@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE JobConfiguration PUBLIC "" "JobConfig.dtd"[
+<!ENTITY WJetsToLNu_v2 SYSTEM "../../SFrameAnalysis/config/Samples_TTBSM53/WJetsToLNu_v2.xml">
+<!ENTITY ZJetsToNuNu_50_HT_100 SYSTEM "../../SFrameAnalysis/config/Samples_TTBSM53/ZJetsToNuNu_50_HT_100_TuneZ2Star_8TeV_madgraph.xml">
+<!ENTITY ZJetsToNuNu_100_HT_200 SYSTEM "../../SFrameAnalysis/config/Samples_TTBSM53/ZJetsToNuNu_100_HT_200_TuneZ2Star_8TeV_madgraph.xml">
+<!ENTITY ZJetsToNuNu_200_HT_400 SYSTEM "../../SFrameAnalysis/config/Samples_TTBSM53/ZJetsToNuNu_200_HT_400_TuneZ2Star_8TeV_madgraph.xml">
+<!ENTITY ZJetsToNuNu_400_HT_inf SYSTEM "../../SFrameAnalysis/config/Samples_TTBSM53/ZJetsToNuNu_400_HT_inf_TuneZ2Star_8TeV_madgraph.xml">
+<!ENTITY TTJets_FullLeptMGDecays SYSTEM "../../SFrameAnalysis/config/Samples_TTBSM53/TTJets_FullLeptMGDecays_8TeV-madgraph.xml">
+<!ENTITY TTJets_SemiLeptMGDecays SYSTEM "../../SFrameAnalysis/config/Samples_TTBSM53/TTJets_SemiLeptMGDecays_8TeV-madgraph.xml">
+<!ENTITY TTJets_HadronicMGDecays SYSTEM "../../SFrameAnalysis/config/Samples_TTBSM53/TTJets_HadronicMGDecays_8TeV-madgraph.xml">
+<!ENTITY QCD_HT-100To250 SYSTEM "../../SFrameAnalysis/config/Samples_TTBSM53/QCD_HT-100To250_TuneZ2star_8TeV-madgraph-pythia.xml">
+<!ENTITY QCD_HT-250To500 SYSTEM "../../SFrameAnalysis/config/Samples_TTBSM53/QCD_HT-250To500_TuneZ2star_8TeV-madgraph-pythia6.xml">
+<!ENTITY QCD_HT-500To1000 SYSTEM "../../SFrameAnalysis/config/Samples_TTBSM53/QCD_HT-500To1000_TuneZ2star_8TeV-madgraph-pythia6.xml">
+<!ENTITY QCD_HT-1000ToInf SYSTEM "../../SFrameAnalysis/config/Samples_TTBSM53/QCD_HT-1000ToInf_TuneZ2star_8TeV-madgraph-pythia6.xml">
+<!ENTITY T2tt_Stop1100_LSP0 SYSTEM "T2tt_13TeV_Stop1100_LSP0.xml">
+<!ENTITY T2tt_Stop900_LSP0 SYSTEM "T2tt_13TeV_Stop900_LSP0.xml">
+<!ENTITY T2tt_Stop900_LSP200 SYSTEM "T2tt_13TeV_Stop900_LSP200.xml">
+]>
+
+<!-- <JobConfiguration JobName="StopCycleJob" OutputLevel="VERBOSE"> -->
+<JobConfiguration JobName="StopCycleJob" OutputLevel="INFO">
+    
+	<Library Name="libfastjet"/>
+	<Library Name="libfastjettools"/>
+   <Library Name="libJetMETObjects"/>
+	<Library Name="libSFramePlugIns"/>
+   <Library Name="libgfortran"/>
+	<Library Name="libSFrameTools"/>
+	<Library Name="libAnalysis"/>
+	<Library Name="libNtuple"/>
+	<Library Name="libStopAnalysis"/>
+       
+   <Package Name="SFrameCore.par" />
+	<Package Name="StopAnalysis.par" />
+
+  
+   <Cycle Name="StopCycle" RunMode="PROOF" ProofServer="pod://" ProofWorkDir="/scratch/hh/dust/naf/cms/user/kriheine/Proof_WorkDir/" ProofNodes="-1" OutputDirectory="/scratch/hh/dust/naf/cms/user/kriheine/SFrameOutput/" PostFix="" TargetLumi="19500.0"> 
+  <!--   <Cycle Name="StopCycle" OutputDirectory="/afs/naf.desy.de/user/k/kriheine/kriheine/SFrameOutput/" PostFix="" TargetLumi="19500.0"> -->
+
+      <InputData Lumi="1.0" NEventsMax="1000" Type="MC" Version="TestFile" Cacheable="False">  
+         <In FileName="/scratch/hh/dust/naf/cms/user/kriheine/SFrameNtuple/T2tt_2J_mStop-500_mLSP-300_TuneZ2star_8TeV-madgraph-tauola.root" Lumi="0.0"/>  
+			<InputTree Name="AnalysisTree" />  
+         <OutputTree Name="AnalysisTree" />
+		</InputData> 
+
+  <!--     <InputData Lumi="1538.6" NEventsMax="-1" Type="MC" Version="WJetsToLNu_v2" Cacheable="False">
+		     &WJetsToLNu_v2; 
+			<InputTree Name="AnalysisTree" />
+         <OutputTree Name="AnalysisTree" />
+	   </InputData> 
+
+      <InputData Lumi="8925.4" NEventsMax="-1" Type="MC" Version="ZJetsToNuNu_50_HT_100" Cacheable="False"> 
+		     &ZJetsToNuNu_50_HT_100; 
+		 	<InputTree Name="AnalysisTree" />
+         <OutputTree Name="AnalysisTree" />
+	   </InputData>
+
+      <InputData Lumi="23197.9" NEventsMax="-1" Type="MC" Version="ZJetsToNuNu_100_HT_200" Cacheable="False">
+		     &ZJetsToNuNu_100_HT_200; 
+		 	<InputTree Name="AnalysisTree" />
+         <OutputTree Name="AnalysisTree" />
+	   </InputData>
+
+       <InputData Lumi="102595.1" NEventsMax="-1" Type="MC" Version="ZJetsToNuNu_200_HT_400" Cacheable="False">
+		     &ZJetsToNuNu_200_HT_400; 
+		 	<InputTree Name="AnalysisTree" />
+         <OutputTree Name="AnalysisTree" />
+	   </InputData>
+
+      <InputData Lumi="160851.1" NEventsMax="-1" Type="MC" Version="ZJetsToNuNu_400_HT_inf" Cacheable="False"> 
+		     &ZJetsToNuNu_400_HT_inf; 
+		 	<InputTree Name="AnalysisTree" />
+         <OutputTree Name="AnalysisTree" />
+	   </InputData>  
+
+      <InputData Lumi="22917.8" NEventsMax="-1" Type="MC" Version="T2tt_2J_mStop-250_mLSP-50" Cacheable="False">  
+         <In FileName="/scratch/hh/dust/naf/cms/user/kriheine/SFrameNtuple/T2tt_2J_mStop-250_mLSP-50_TuneZ2star_8TeV-madgraph-tauola.root" Lumi="0.0"/>  
+			<InputTree Name="AnalysisTree" /> 
+         <OutputTree Name="AnalysisTree" />
+		</InputData> 
+
+      <InputData Lumi="353252.2" NEventsMax="-1" Type="MC" Version="T2tt_2J_mStop-400_mLSP-150" Cacheable="False">  
+         <In FileName="/scratch/hh/dust/naf/cms/user/kriheine/SFrameNtuple/T2tt_2J_mStop-400_mLSP-150_TuneZ2star_8TeV-madgraph-tauola.root" Lumi="0.0"/>  
+			<InputTree Name="AnalysisTree" />  
+         <OutputTree Name="AnalysisTree" />
+		</InputData>  
+
+      <InputData Lumi="1430314.1" NEventsMax="-1" Type="MC" Version="T2tt_2J_mStop-500_mLSP-300" Cacheable="False">  
+         <In FileName="/scratch/hh/dust/naf/cms/user/kriheine/SFrameNtuple/T2tt_2J_mStop-500_mLSP-300_TuneZ2star_8TeV-madgraph-tauola.root" Lumi="0.0"/>  
+			<InputTree Name="AnalysisTree" />  
+         <OutputTree Name="AnalysisTree" />
+		</InputData>  
+
+      <InputData Lumi="4861517.1" NEventsMax="-1" Type="MC" Version="T2tt_2J_mStop-600_mLSP-50" Cacheable="False">  
+         <In FileName="/scratch/hh/dust/naf/cms/user/kriheine/SFrameNtuple/T2tt_2J_mStop-600_mLSP-50_TuneZ2star_8TeV-madgraph-tauola.root" Lumi="0.0"/>  
+			<InputTree Name="AnalysisTree" />
+         <OutputTree Name="AnalysisTree" />
+		</InputData> 
+
+      <InputData Lumi="24619933.1" NEventsMax="-1" Type="MC" Version="T2tt_2J_mStop-750_mLSP-25" Cacheable="False">  
+         <In FileName="/scratch/hh/dust/naf/cms/user/kriheine/SFrameNtuple/T2tt_2J_mStop-750_mLSP-25_TuneZ2star_8TeV-madgraph-tauola.root" Lumi="0.0"/>  
+			<InputTree Name="AnalysisTree" /> 
+         <OutputTree Name="AnalysisTree" />
+		</InputData> 
+
+      <InputData Lumi="493445.2" NEventsMax="-1" Type="MC" Version="TTJets_FullLeptMGDecays" Cacheable="False">
+		     &TTJets_FullLeptMGDecays; 
+		 	<InputTree Name="AnalysisTree" />
+         <OutputTree Name="AnalysisTree" />
+	   </InputData>
+
+      <InputData Lumi="247851.9" NEventsMax="-1" Type="MC" Version="TTJets_SemiLeptMGDecays" Cacheable="False"> 
+		     &TTJets_SemiLeptMGDecays; 
+		 	<InputTree Name="AnalysisTree" />
+         <OutputTree Name="AnalysisTree" />
+	   </InputData>
+
+      <InputData Lumi="292002.4" NEventsMax="-1" Type="MC" Version="TTJets_HadronicMGDecays" Cacheable="False">
+		     &TTJets_HadronicMGDecays; 
+		 	<InputTree Name="AnalysisTree" /> 
+         <OutputTree Name="AnalysisTree" />
+	   </InputData>
+
+      <InputData Lumi="4.8" NEventsMax="-1" Type="MC" Version="QCD_HT-100To250" Cacheable="False"> 
+		     &QCD_HT-100To250; 
+		 	<InputTree Name="AnalysisTree" />
+         <OutputTree Name="AnalysisTree" />
+	   </InputData>
+
+      <InputData Lumi="98.1" NEventsMax="-1" Type="MC" Version="QCD_HT-250To500" Cacheable="False"> 
+		     &QCD_HT-250To500; 
+		 	<InputTree Name="AnalysisTree" />
+         <OutputTree Name="AnalysisTree" />
+	   </InputData>  
+
+      <InputData Lumi="3631.5" NEventsMax="-1" Type="MC" Version="QCD_HT-500To1000" Cacheable="False"> 
+		     &QCD_HT-500To1000; 
+		 	<InputTree Name="AnalysisTree" />
+         <OutputTree Name="AnalysisTree" />
+	   </InputData> 
+
+      <InputData Lumi="67862.1" NEventsMax="-1" Type="MC" Version="QCD_HT-1000ToInf" Cacheable="False"> 
+		     &QCD_HT-1000ToInf; 
+		 	<InputTree Name="AnalysisTree" />
+         <OutputTree Name="AnalysisTree" />
+	   </InputData> 
+
+      <InputData Lumi="1628501.6" NEventsMax="-1" Type="MC" Version="T2tt_13TeV_Stop1100_LSP0_v2" Cacheable="False"> 
+         &T2tt_Stop1100_LSP0;
+		 	<InputTree Name="AnalysisTree" />
+         <OutputTree Name="AnalysisTree" />
+	   </InputData> 
+
+      <InputData Lumi="387558.1" NEventsMax="-1" Type="MC" Version="T2tt_13TeV_Stop900_LSP0_v2" Cacheable="False"> 
+         &T2tt_Stop900_LSP0;
+		 	<InputTree Name="AnalysisTree" />
+         <OutputTree Name="AnalysisTree" />
+	   </InputData>
+
+      <InputData Lumi="387565.9" NEventsMax="-1" Type="MC" Version="T2tt_13TeV_Stop900_LSP200_v2" Cacheable="False"> 
+         &T2tt_Stop900_LSP200;
+		 	<InputTree Name="AnalysisTree" />
+         <OutputTree Name="AnalysisTree" />
+	   </InputData>
+
+      <InputData Lumi="1363.1" NEventsMax="-1" Type="MC" Version="TTbar13TeV" Cacheable="False">  
+         <In FileName="/scratch/hh/dust/naf/cms/user/kriheine/SFrameNtuple/TTbar_TuneZ2star_powheg_13TeV.root" Lumi="0.0"/>  
+			<InputTree Name="AnalysisTree" />  
+	      <OutputTree Name="AnalysisTree" />  
+		</InputData>  -->
+
+
+		<UserConfig>
+
+		   <Item Name="JetCollection" Value="goodPatJetsPFlow" />
+    <!--     <Item Name="JetCollection" Value="selectedPatJetsPFlow" />-->
+	<!--	   <Item Name="ElectronCollection" Value="selectedPatElectronsPFlowLoose" />-->
+         <Item Name="ElectronCollection" Value="selectedPatElectronsPFlow" />
+	<!--	   <Item Name="MuonCollection" Value="selectedPatMuonsPFlowLoose" /> -->
+         <Item Name="MuonCollection" Value="selectedPatMuonsPFlow" />
+		   <Item Name="TauCollection" Value="selectedPatTausPFlow" />
+		   <Item Name="GenJetCollection" Value="ak5GenJetsNoNu" />
+<!--			   <Item Name="PhotonCollection" Value="patPhotons" /> -->
+		   <Item Name="PrimaryVertexCollection" Value="goodOfflinePrimaryVertices" /> 
+		   <Item Name="METName" Value="patMETsPFlow" />  
+		   <Item Name="TopJetCollection" Value="goodPatJetsCATopTagPFPacked" />
+		   <Item Name="TopJetCollectionGen" Value="caTopTagGen" />
+		   <Item Name="GenParticleCollection" Value="GenParticles" /> 
+
+         <Item Name="JECFileLocation" Value="/scratch/hh/dust/naf/cms/user/peiffer/CMSSW_5_3_10/src" />
+         <Item Name="JECDataGlobalTag" Value="FT_53_V21_AN6" />
+         <Item Name="JECMCGlobalTag" Value="START53_V27" />
+ <!--        <Item Name="JECMCGlobalTag" Value="START53_V7G" />-->
+         <Item Name="JECJetCollection" Value="AK5PFchs" />
+		      
+<!--		   <Item Name="PU_Filename_MC" Value="/scratch/hh/dust/naf/cms/user/peiffer/Analysis53X/PileUpHistos/PileUpHistoCycle" /> -->
+<!--		   <Item Name="PU_Filename_Data" Value="/scratch/hh/dust/naf/cms/user/peiffer/Analysis53X/PileUpHistos/MyDataPileupHistogram_206745.root" /> -->
+<!--		   <Item Name="PU_Histname_Data" Value="pileup" /> -->
+<!--		   <Item Name="PU_Histname_MC" Value="N_pileup_hist" /> -->
+
+<!--		   <Item Name="writeTTbarReco" Value="True" /> --> 
+<!--		   <Item Name="readTTbarReco" Value="True" /> -->
+
+<!--		   <Item Name="LumiFilePath" Value="/scratch/hh/dust/naf/cms/user/peiffer/Analysis53X/LumiFiles/" /> -->
+<!--		   <Item Name="LumiFileName" Value="Mu40_206745.root" /> -->
+<!--		   <Item Name="LumiTrigger" Value="HLT_Mu40_eta2p1_v" /> -->
+
+<!--		   <Item Name="BTaggingScaleFactors" Value="true" /> -->
+
+<!--		   <Item Name="LeptonScaleFactors" Value="MuonRunA 1051.4 MuonRunB 4778 MuonRunC 11946" />  -->
+		      
+      </UserConfig>
+
+	</Cycle>
+
+</JobConfiguration>
